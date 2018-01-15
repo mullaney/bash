@@ -17,10 +17,17 @@ const commands = {
     fs.readdir('.', function(err, files) {
       if (err) throw err;
       files.forEach(function(file) {
-        output(file.toString() + "\n");
+        output(file.toString() + '\n');
       })
       done();
     });
+  },
+  cat: (args, done) => {
+    fs.readFile(args[0], 'utf8', (err, file) => {
+      if (err) throw err;
+      output(file);
+      done();
+    })
   }
 }
 
