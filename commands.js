@@ -27,7 +27,23 @@ const commands = {
       if (err) throw err;
       output(file);
       done();
-    })
+    });
+  },
+  head: (args, done) => {
+    fs.readFile(args[0], 'utf8', (err, file) => {
+      if (err) throw err;
+      let lines = file.split('\n');
+      output(lines.slice(0, 5).join('\n'));
+      done();
+    });
+  },
+  tail: (args, done) => {
+    fs.readFile(args[0], 'utf8', (err, file) => {
+      if (err) throw err;
+      let lines = file.split('\n');
+      output(lines.slice(-5).join('\n'));
+      done();
+    });
   }
 }
 
